@@ -21,7 +21,6 @@ namespace Attributes
     {
         public int Id { get; set; }
         [RequiredProperty]
-        [RequiredProperty]
         public string FirstName { get; set; }
         [RequiredProperty]
         public string LastName { get; set; }
@@ -41,7 +40,7 @@ namespace Attributes
             Console.WriteLine("{0}, {1}, {2}, {3} added!", customer.Id, customer.FirstName, customer.LastName, customer.Age);
         }
     }
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     class RequiredPropertyAttribute:Attribute
     {
 
