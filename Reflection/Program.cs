@@ -1,4 +1,6 @@
-﻿namespace Reflection
+﻿using System.Reflection;
+
+namespace Reflection
 {
     internal class Program
     {
@@ -15,7 +17,26 @@
             //Console.WriteLine(dortIslem.Topla2());
 
             var instance = Activator.CreateInstance(tip, 5, 4);
-            Console.WriteLine(instance.GetType().GetMethod("Topla2").Invoke(instance, null));
+            //Console.WriteLine(instance.GetType().GetMethod("Topla2").Invoke(instance, null));
+
+            MethodInfo methodInfo = instance.GetType().GetMethod("Topla2");
+            Console.WriteLine(methodInfo.Invoke(instance,null));
+            Console.WriteLine("------------");
+
+            var metodlar = tip.GetMethods();
+            foreach (var info in metodlar)
+            {
+                Console.WriteLine("Metod adı : {0}", info.Name);
+                foreach (var parameterInfo in info.GetParameters())
+                {
+                    Console.WriteLine("Parametre : {0}", parameterInfo.Name);
+                }
+                
+                foreach (var attribute in info.GetCustomAttributes())
+                {
+                    Console.WriteLine("Attribute Name : {0}", attribute.GetType().Name);
+                }
+            }
 
             Console.ReadLine();
         }
@@ -41,9 +62,18 @@
         {
             return _sayi1 + _sayi2;
         }
+
+        [MethodName("Çarpma")]
         public int Carp2()
         {
             return _sayi1 * _sayi2;
+        }
+    }
+    public class MethodNameAttribute : Attribute
+    {
+        public MethodNameAttribute(string name)
+        {
+
         }
     }
 }
