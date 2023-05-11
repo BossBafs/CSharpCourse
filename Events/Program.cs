@@ -12,7 +12,7 @@
 
             gsm.StockControlEvent += Gsm_StockControlEvent;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++) 
             {
                 harddisk.Sell(10);
                 gsm.Sell(10);
