@@ -16,7 +16,7 @@
             {
                 harddisk.Sell(10);
                 gsm.Sell(10);
-                Console.ReadLine();
+                Console.ReadLine(); 
             }
 
             Console.ReadLine();
